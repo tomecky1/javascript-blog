@@ -66,21 +66,21 @@
       /* [DONE] make html variable with empty string */
       let html = '';
       /* [DONE] get tags from data-tags attribute */
-      const articleTags = article.getAttribute(optArticleTagsSelector);
+      const articleTags = article.getAttribute('data-tags');
       console.log('articleTags: ', articleTags);
-      /* split tags into array */
+      /* [DONE] split tags into array */
       const articleTagsArray = articleTags.split(' ');
       console.log('articleTagsArray, ', articleTagsArray);
       /* START LOOP: for each tag */
       for (const tag of articleTagsArray) {
         console.log('tag: ', tag);
-        /* generate HTML of the link */
+        /* [DONE] generate HTML of the link */
         const linkHTML = '<li><a href="#' + articleTags + '"><span>' + articleTagsArray + '</span></a></li>';
-        /* add generated code to html variable */
+        /* [DONE] add generated code to html variable */
         html = html + linkHTML;
       /* END LOOP: for each tag */
       }
-      /* insert HTML of all the links into the tags wrapper */
+      /* [DONE] insert HTML of all the links into the tags wrapper */
       titleList.innerHTML = html;
       /* END LOOP: for every article: */
     }
