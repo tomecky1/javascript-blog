@@ -151,6 +151,12 @@
     }
   }
   generateAuthors();
+  function authorClickHandler(event){
+    event.preventDefault();
+    const clickedElement = this;
+    const href = clickedElement.getAttribute('href'); //potrzebna pomoc w pisaniu tej funkcji co dalej
+    
+  }
   function addClickListenersToAuthors(){
     /* [DONE] find all links to authors */
     const authorLinks = document.querySelectorAll('data-author');
