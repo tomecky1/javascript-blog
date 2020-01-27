@@ -151,21 +151,35 @@
     }
   }
   generateAuthors();
-  function authorClickHandler(event){
+  function authorClickHandler(event){  //HELP NIE OGARNIAM CZY TO JEST OK
     event.preventDefault();
     const clickedElement = this;
-    const href = clickedElement.getAttribute('href'); //potrzebna pomoc w pisaniu tej funkcji co dalej
-    
+    const href = clickedElement.getAttribute('href');
+    const author = href.replace('#author-', '');    
+    const authorsActiveLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+    for (const authorActiveLinks of authorsActiveLinks) {
+      authorActiveLinks.classList.remove('active');
+      }
+    const authorsLinks = document.querySelectorAll('a[href="' + href + '"]');
+    for (const authorLinks of authorsLinks) {
+      authorLinks.classList.add('active');
+      /* END LOOP: for each found tag link */
+    }
+    /* execute function "generateTitleLinks" with article selector as argument */
+    const customSelector = '[data-author="' + author + '"]';
+    generateTitleLinks(customSelector);
+    console.log('customSelector: ', customSelector);
   }
-  function addClickListenersToAuthors(){
+  
+  function addClickListenersToAuthors(){ 
     /* [DONE] find all links to authors */
     const authorLinks = document.querySelectorAll('data-author');
     console.log('authorLinks: ', authorLinks);
 
     /* START LOOP: for each link */
     for (const link of authorLinks) {
-      /* [DONE] add tagClickHandler as event listener for that link */
-      link.addEventListener('click', authorClickHandler);
+      /* [DONE] add authorClickHandler as event listener for that link */
+      link.addEventListener('click', authorClickHandler); //JAK WYWOŁAĆ PO KLIKNIĘCIU
       /* END LOOP: for each link */
     }
   }
