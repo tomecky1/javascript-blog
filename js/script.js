@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 'use strict';
 {
   const titleClickHandler = function(event){
@@ -156,24 +157,24 @@
     const clickedElement = this;
     const href = clickedElement.getAttribute('href');
     const author = href.replace('#author-', '');    
-    const authorsActiveLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+    const authorsActiveLinks = document.querySelectorAll('a[href^="#author-"]');
     for (const authorActiveLinks of authorsActiveLinks) {
       authorActiveLinks.classList.remove('active');
-      }
+    }
     const authorsLinks = document.querySelectorAll('a[href="' + href + '"]');
     for (const authorLinks of authorsLinks) {
       authorLinks.classList.add('active');
       /* END LOOP: for each found tag link */
     }
     /* execute function "generateTitleLinks" with article selector as argument */
-    const customSelector = '[data-author="' + author + '"]';
+    const customSelector = '[data-author="' + author.replace('#', '') + '"]';
     generateTitleLinks(customSelector);
     console.log('customSelector: ', customSelector);
   }
   
   function addClickListenersToAuthors(){ 
     /* [DONE] find all links to authors */
-    const authorLinks = document.querySelectorAll('data-author');
+    const authorLinks = document.querySelectorAll('.post-author a');
     console.log('authorLinks: ', authorLinks);
 
     /* START LOOP: for each link */
