@@ -32,7 +32,7 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.tags .list';
+    optTagsListSelector = '.list .tags';
   function generateTitleLinks(customSelector = ''){
   /* [DONE] remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
@@ -94,17 +94,17 @@
       tagList.innerHTML = html;
       /* END LOOP: for every article: */
       /* [NEW] find list of tags in right column */
-      // const tagList = document.querySelector('.tags');
+      // const tagList = document.querySelector(optTagsListSelector); //CZY ZMIENIĆ NAZWĘ ZMIENNEJ
       /* [NEW] create variable for all links HTML code */
       let allTagsHTML = '';
       /* [NEW] START LOOP: for each tag in allTags: */
       for (const tag in allTags) {
         /* [NEW] generate code of a link and add it to allTagsHTML */
-        allTagsHTML += tag + '<li><a href="#' + `tag-${tag}` + (' + allTags[tag] + ') + '</a></li>';  // NIE GENERUJE LISTY TAGÓW - HELP     
+        allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a></li>`;     
       } 
       /* [NEW] END LOOP: for each tag in allTags: */
       /*[NEW] add HTML from allTagsHTML to tagList */
-      tagList.InnerHTML = allTagsHTML;   
+      tagList.innerHTML = allTagsHTML;   
     }
     console.log(allTags);
   }
