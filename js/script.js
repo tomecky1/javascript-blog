@@ -32,7 +32,9 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.list .tags';
+    optTagsListSelector = '.list .tags',
+    optCloudClassCount = 5,
+    optCloudClassPrefix = 'tag-size-';
   function generateTitleLinks(customSelector = ''){
   /* [DONE] remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
@@ -59,6 +61,30 @@
     }
   }
   generateTitleLinks();
+  function calculateTagsParams(tags){
+    const params = {
+      max: 0,
+      min: 999999
+    };
+    for(let tag in tags){
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      if (tags[tag] > params.max){
+        params.max = tags[tag];
+      }
+      if (tags[tag] < params.min){
+        params.min = tags[tag];
+      }
+    }
+    return params;
+  }
+  function calculateTagClass(count, params){
+    //JAK NAPISAĆ TĄ FUNKCJĘ
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
+    const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+    return classNumber;
+  }
   function generateTags(){
     const articles = document.querySelectorAll(optArticleSelector);
     let allTags = {};
@@ -82,11 +108,17 @@
       }
   
       tagList.innerHTML = html;
+      const tagsParams = calculateTagsParams(allTags);
+      console.log('tagsParams', tagsParams);
+      
   
       let allTagsHTML = '';
   
       for (const tag in allTags) {
-        allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a></li>`;
+        const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParam) + '</li>';
+        console.log('tagLinkHTML:', tagLinkHTML);
+        //allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a></li>`;
+        allTagsHTML += tagLinkHTML;
       }
   
       tagList = document.querySelector('.tags');
@@ -147,8 +179,8 @@
   /* find all authors */
     const authors = document.querySelectorAll(optArticleAuthorSelector);
     for (const author of authors) {
-      const authorList = author.innerHTML;
-      let html = '';
+      // const authorList = author.innerHTML;
+      // let html = '';
       const articleAuthor = author.getAttribute('data-author');
       console.log('articleAuthor: ', articleAuthor);
       const authorElement = document.createElement('a');
