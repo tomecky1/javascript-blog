@@ -115,8 +115,9 @@
       let allTagsHTML = '';
   
       for (const tag in allTags) {
-        const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParam) + '</li>';
+        const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '</a></li>';
         console.log('tagLinkHTML:', tagLinkHTML);
+
         //allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a></li>`;
         allTagsHTML += tagLinkHTML;
       }
