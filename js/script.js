@@ -7,7 +7,7 @@
   const titleClickHandler = function (event) {
     event.preventDefault();
     const clickedElement = this;
-    console.log('Przycisk został wciśnięty');
+    console.log('Element kliknięty! Wyświetlam zawartość event:', event);
     /* [DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
     for (let activeLink of activeLinks) {
