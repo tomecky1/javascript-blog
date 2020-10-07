@@ -3,7 +3,7 @@
   document.getElementById('test-button').addEventListener('click', function () {
     const links = document.querySelectorAll('.titles a');
     console.log('links:', links);
-  })
+  });
   const titleClickHandler = function (event) {
     event.preventDefault();
     const clickedElement = this;
@@ -93,24 +93,30 @@
   }
 
   function generateTags() {
+    /* find all articles */  
     const articles = document.querySelectorAll(optArticleSelector);
     let allTags = {};
-
+    /* START LOOP: for every article: */
     for (const article of articles) {
+      /* find tags wrapper */
       let tagList = article.querySelector(optArticleTagsSelector);
+      /* make html variable with empty string */
       let html = '';
-
+      /* get tags from data-tags attribute */
       const articleTags = article.getAttribute('data-tags');
+      /* split tags into array */
       const articleTagsArray = articleTags.split(' ');
-
+      /* START LOOP: for each tag */
       for (const tag of articleTagsArray) {
+        /* generate HTML of the link */
         const linkHTML = `<li><a href="#tag-${tag}"><span>${tag}</a></li>`;
-
+        /* add generated code to html variable */
         html = html + linkHTML;
-
+        /* END LOOP: for each tag */
         if (!allTags[tag]) {
           allTags[tag] = 1;
         } else
+        /* insert HTML of all the links into the tags wrapper */
           allTags[tag]++;
       }
 
@@ -131,6 +137,7 @@
       tagList = document.querySelector('.tags');
       tagList.innerHTML = allTagsHTML;
     }
+    /* END LOOP: for every article: */
   }
   generateTags();
 
