@@ -1,5 +1,12 @@
 /* eslint-disable linebreak-style */
 'use strict'; {
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+    tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+    authorListLink: Handlebars.compile(document.querySelector('#template-author-list-link').innerHTML)
+  }
   document.getElementById('test-button').addEventListener('click', function () {
     const links = document.querySelectorAll('.titles a');
     console.log('links:', links);
@@ -52,7 +59,9 @@
       /* [DONE] get the title from the title element */
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
       /* [DONE] create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       console.log('linkHTML: ', linkHTML);
       /* [DONE] insert link into html variable */
       html = html + linkHTML;
@@ -109,7 +118,9 @@
       /* START LOOP: for each tag */
       for (const tag of articleTagsArray) {
         /* generate HTML of the link */
-        const linkHTML = `<li><a href="#tag-${tag}"><span>${tag}</a></li>`;
+        //const linkHTML = `<li><a href="#tag-${tag}"><span>${tag}</a></li>`;
+        const linkHTMLData = {id: tag, title: tag};
+        const linkHTML = templates.tagLink(linkHTMLData);
         /* add generated code to html variable */
         html = html + linkHTML;
         /* END LOOP: for each tag */
@@ -125,17 +136,25 @@
       console.log('tagsParams', tagsParams);
 
 
-      let allTagsHTML = '';
+      // let allTagsHTML = '';
+      const allTagsData = {tags: []};
 
       for (const tag in allTags) {
         const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '</a></li>';
         console.log('tagLinkHTML:', tagLinkHTML);
 
-        allTagsHTML += tagLinkHTML;
+        // allTagsHTML += tagLinkHTML;
+        allTagsData.tags.push({
+          tag: tag,
+          count: allTags[tag],
+          className: calculateTagClass(allTags[tag], tagsParams)
+        });
       }
 
       tagList = document.querySelector('.tags');
-      tagList.innerHTML = allTagsHTML;
+      // tagList.innerHTML = allTagsHTML;
+      tagList.innerHTML = templates.tagCloudLink(allTagsData);
+      console.log('allTagsData: ', allTagsData);
     }
     /* END LOOP: for every article: */
   }
@@ -207,7 +226,7 @@
   }
   generateAuthors();
 
-  function authorClickHandler(event) { //HELP NIE OGARNIAM CZY TO JEST OK
+  function authorClickHandler(event) {
     event.preventDefault();
     const clickedElement = this;
     const href = clickedElement.getAttribute('href');
