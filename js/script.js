@@ -8,10 +8,10 @@
         tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
         authorListLink: Handlebars.compile(document.querySelector('#template-author-list-link').innerHTML)
     }
-    document.getElementById('test-button').addEventListener('click', function () {
-        const links = document.querySelectorAll('.titles a');
-        console.log('links:', links);
-    });
+    // document.getElementById('test-button').addEventListener('click', function () {
+    //     const links = document.querySelectorAll('.titles a');
+    //     console.log('links:', links);
+    // });
     const titleClickHandler = function (event) {
         event.preventDefault();
         const clickedElement = this;
