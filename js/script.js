@@ -1,4 +1,4 @@
-/* eslint-disable indent*/
+/* eslint-disable indent, no-inner-declarations */
 'use strict';
 {
     const templates = {
@@ -43,11 +43,10 @@
         optTitleListSelector = '.titles',
         optArticleTagsSelector = '.post-tags .list',
         optArticleAuthorSelector = '.post-author',
-        optTagsListSelector = '.list .tags',
+        //optTagsListSelector = '.list .tags',
         optCloudClassCount = 5,
         optCloudClassPrefix = 'tag-size-';
 
-    // eslint-disable-next-line no-inner-declarations
     function generateTitleLinks(customSelector = '') {
         /* [DONE] remove contents of titleList */
         const titleList = document.querySelector(optTitleListSelector);
