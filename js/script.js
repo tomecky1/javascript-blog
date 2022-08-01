@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable indent*/
 'use strict';
 {
     const templates = {
@@ -7,7 +7,7 @@
         authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
         tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
         authorListLink: Handlebars.compile(document.querySelector('#template-author-list-link').innerHTML)
-    }
+    };
     // document.getElementById('test-button').addEventListener('click', function () {
     //     const links = document.querySelectorAll('.titles a');
     //     console.log('links:', links);
@@ -47,6 +47,7 @@
         optCloudClassCount = 5,
         optCloudClassPrefix = 'tag-size-';
 
+    // eslint-disable-next-line no-inner-declarations
     function generateTitleLinks(customSelector = '') {
         /* [DONE] remove contents of titleList */
         const titleList = document.querySelector(optTitleListSelector);
@@ -95,7 +96,7 @@
     }
 
     function calculateTagClass(count, params) {
-        //JAK NAPISAĆ TĄ FUNKCJĘ
+        //JAK NAPISAĆ TĘ FUNKCJĘ
         const normalizedCount = count - params.min;
         const normalizedMax = params.max - params.min;
         const percentage = normalizedCount / normalizedMax;

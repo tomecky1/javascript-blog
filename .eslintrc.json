@@ -1,6 +1,6 @@
 {
     "globals": {
-        "Handlebars" :false
+        "Handlebars": false
     },
     "env": {
         "browser": true,
@@ -16,8 +16,7 @@
             2
         ],
         "linebreak-style": [
-            "error",
-            "unix"
+            "off"
         ],
         "quotes": [
             "error",
