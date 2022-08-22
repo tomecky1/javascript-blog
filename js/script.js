@@ -215,18 +215,28 @@
     addClickListenersToTags();
 
     function generateAuthors() {
-        /* find all authors */
-        const authors = document.querySelectorAll(optArticleAuthorSelector);
-        for (const author of authors) {
-            // const authorList = author.innerHTML;
-            // let html = '';
-            const articleAuthor = author.getAttribute('data-author');
-            console.log('articleAuthor: ', articleAuthor);
-            const authorElement = document.createElement('a');
-            authorElement.setAttribute('href', `#${articleAuthor}`);
-            authorElement.innerText = articleAuthor;
-            author.appendChild(authorElement);
+        const articles = document.querySelectorAll(optArticleSelector);
+        // let allAuthors = {};
+        /* START LOOP: for every article: */
+
+        for (const article of articles) {
+            const authorWrapper = article.querySelector(optArticleAuthorSelector);
+            const author = article.getAttribute('data-author');
+            const linkHTML = `<li><a href="#author-${author}"><span>${author}</a></li>`;
+            authorWrapper.innerHTML = linkHTML;
         }
+        /* find all authors */
+        // const authors = document.querySelectorAll(optArticleAuthorSelector);
+        // for (const author of authors) {
+        //     // const authorList = author.innerHTML;
+        //     // let html = '';
+        //     const articleAuthor = author.getAttribute('data-author');
+        //     console.log('articleAuthor: ', articleAuthor);
+        //     const authorElement = document.createElement('a');
+        //     authorElement.setAttribute('href', `#${articleAuthor}`);
+        //     authorElement.innerText = articleAuthor;
+        //     author.appendChild(authorElement);
+        // }
     }
 
     generateAuthors();
