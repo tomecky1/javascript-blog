@@ -92,7 +92,6 @@
     }
 
     function calculateTagClass(count, params) {
-        //JAK NAPISAĆ TĘ FUNKCJĘ
         const normalizedCount = count - params.min;
         const normalizedMax = params.max - params.min;
         const percentage = normalizedCount / normalizedMax;
@@ -134,31 +133,6 @@
 
 
             tagList.innerHTML = html;
-            // const tagsParams = calculateTagsParams(allTags);
-            // console.log('tagsParams', tagsParams);
-
-
-            // let allTagsHTML = '';
-            // const allTagsData = {tags: []};
-            //
-            // for (const tag in allTags) {
-            //     const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '</a></li>';
-            //     console.log('tagLinkHTML:', tagLinkHTML);
-            //
-            //     //allTagsHTML += tagLinkHTML;
-            //     allTagsData.tags.push({
-            //         tag: tag,
-            //         count: allTags[tag],
-            //         className: calculateTagClass(allTags[tag], tagsParams)
-            //     });
-            //}
-
-
-            // tagList = document.querySelector('.tags');
-            // tagList.innerHTML = allTagsHTML;
-            // tagList.innerHTML = templates.tagCloudLink(allTagsData);
-            // console.log('allTagsData: ', allTagsData);
-
         }
         /* END LOOP: for every article: */
         /* [NEW] find list of tags in right column */
