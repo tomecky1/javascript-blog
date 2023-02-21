@@ -42,8 +42,7 @@
         optArticleAuthorSelector = '.post-author',
         optAuthorsListSelector = '.authors.list',
         optTagsListSelector = '.list.tags',
-        optCloudClassCount = 5,
-        optCloudClassPrefix = 'tag-size-';
+        optCloudClassCount = 5;
 
     function generateTitleLinks(customSelector = '') {
         /* [DONE] remove contents of titleList */
